@@ -1,0 +1,79 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+#container {
+    width: 100%;
+    margin: 0px auto;
+
+}
+
+.main {
+    width: auto;
+    margin: auto;
+    background-color: burlywood;
+    min-height: 1000px;
+    margin: 0 auto;
+}
+
+.strawberry {
+    width: 150px;
+}
+
+.head-text {
+    font-size: 30px;
+    color: white;
+}
+
+header {
+    height: 80px;
+    width: auto;
+    background-color: burlywood;
+    font-size: 50px;
+    font-family: cursive;
+    color: #8B4513;
+}
+
+.overview {
+    height: 1000px;
+    background: #8B4513;
+    font-family: sans-serif;
+    color: antiquewhite;
+}
+
+.team {
+    color: antiquewhite;
+    background-color: darkgoldenrod;
+}
+
+.Info {
+    border: 2px solid antiquewhite;
+    padding-top: 25px; 
+    padding-bottom: 50px; 
+    padding-left: 20px;
+    width: 600px;
+    margin: 50px auto 0px auto;
+
+}
+
+.shop-button{
+    margin-left: 45%;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    font-size: 20px;
+    color:#8B4513;
+    background-color: antiquewhite;
+    font-family:sans-serif;
+    border-radius:10px;
+    padding: 10px;
+}
+
+.shop-button:hover{
+    background-color:brown;
+    color: aliceblue;
+}
+
+br{
+    margin-top: 3px;
+}

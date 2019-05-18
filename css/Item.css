@@ -1,0 +1,387 @@
+
+/*****************************************/
+/* Basic CSS settings for the store.php */
+/*****************************************/
+body{
+    margin:0;
+    padding:0;
+    background-color:burlywood;
+}
+/***************************************************/
+/* Basic CSS settings for the store.php ends here */
+/***************************************************/
+
+
+/*************/
+/* HEAD PART */
+/*************/
+
+header h1{
+    height: 80px;
+    margin-top : 100px;
+    
+    color :#8B4513;
+    background-color:burlywood;
+    text-align : center;
+    
+}
+header p{
+    margin-top: auto;
+    margin-bottom: 0.1px;
+    font-size: 50px;
+    background-color:burlywood;
+    font-family:cursive;
+    color:#8B4513;
+    text-align : center;
+}
+/**********************/
+/* HEAD PART ends here*/
+/**********************/
+
+
+
+/*****************************************************/
+/* headr in the BODY : CSS for the OVERVIEW Function */
+/*****************************************************/
+.overview{
+    height: 511px;
+    background: #8B4513;
+    font-family: cursive;
+    color:antiquewhite;
+    display:flex;    
+}
+.overview h3{
+    float:right;  
+}
+.overview h4{
+    color:burlywood;    
+}
+.head-text{
+    text-align: center;
+    align-content: center;
+    margin: 100px 50px 40px 50px;
+    font-size: 20px; 
+}
+.shop-button{
+    margin-top: 100px;
+    font-size: 40px;
+    color:#8B4513;
+    background-color: antiquewhite;
+    font-family:sans-serif;
+    border-radius:10px;
+    padding: 10px;
+    position: relative;
+}
+.shop-button:hover{
+    background-color:brown;
+    color: aliceblue;
+}
+/****************************************************************/
+/*  headr in the BODY : CSS for the OVERVIEW Function ends here */
+/****************************************************************/
+
+
+section{
+    padding: 70px 0;
+    margin-top : 50px;
+    background : burlywood;
+    
+}
+img{
+    width : 60%;
+    max-width: 2000px;
+    min-width: 250px;
+    object-fit : contain ;
+    transition : all .5s;
+}
+main{
+    display : grid;
+    grid-template-columns : repeat(2, 2fr);
+    max-width: auto;
+    margin : 0 auto;
+}
+
+#tax{
+    margin: 20px 0px 20px 0px;
+}
+
+#total{
+    margin: 20px 0px 20px 0px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**************************/
+/* container1 in the BODY */
+/**************************/
+.container1 {
+    width : 100%;
+    margin : 0;
+    text-align: center;
+
+}
+
+.itemImage{
+    position : relative;
+    overflow :  hidden ;
+    max-height : 500px;
+    height : 100%;
+    box-sizing : border-box;
+    box-shadow : 0 2px 10px #ccc;
+    transition : all .5s;
+}
+
+.itemName{
+    position : absolute;
+    left : 0;
+    bottom : 0;
+    width : 100%;
+    font-size: 25px;
+    color : #fff;
+}
+
+/************************************/
+/* container1 in the BODY ends here */
+/************************************/
+
+
+
+
+
+
+/**************************/
+/* container2 in the BODY */
+/**************************/
+
+/* grid-contaner for the Top Right side( Image1, Image2 && detailed description) */
+.extraImage1 { 
+    grid-area: left; 
+    margin-right: 10px;
+}
+
+.extraImage2 { 
+    grid-area: right; 
+    margin-left: 10px;
+}
+
+.Descriptions{ 
+    grid-area : bottom; 
+}
+
+.container2 {
+  display: grid;
+  grid-template-areas:
+    ' left right'  
+    'bottom bottom'; 
+  grid-gap: 10px;
+  background-color: burlywood;
+}
+
+.container2 > div {
+  background-color: burlywood;
+  text-align: center;
+
+  font-size: 30px;
+}
+/* grid-contaner for the Top Right side( Image1, Image2 && detailed description) ends here */
+
+/************************************/
+/* container3 in the BODY ends here */
+/************************************/
+
+
+
+
+
+
+
+
+
+/**************************/
+/* container3 in the BODY */
+/**************************/
+
+.container3 {
+    width : 100%;
+    margin : 0;
+    text-align: center;
+  }
+
+.template {
+    text-align: right;
+    grid-gap: 20px;
+    font-size: 30px;
+    margin-top : 10px;
+    margin-right: 2px;
+    margin-bottom : 0;
+    padding: 10px;
+    
+}
+
+.template-item{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+}
+
+ input[type=text]{
+    width : 450px;
+    border : 2px solid #aaa;
+    border-radius : 4px;
+    
+    margin-bottom: 4px;
+    outline : none;
+    padding : 8px;
+    box-sizing : borderbox;
+    transition : .3s;
+}
+
+
+/************************************/
+/* container3 in the BODY ends here */
+/************************************/
+
+.form{
+    text-align: center;
+    grid-gap: 10px;
+    padding: 10px;
+    font-size: 25px;
+    margin-top: 10px;
+    margin-left : 10px;
+    float : left;
+    
+
+}
+
+.container4 {
+    width : 100%;
+    margin : 0;
+    text-align: left;
+  }
+
+
+
+
+.P-button{
+
+    color: grey;
+    padding: 10px 40px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    border-radius:10px;
+
+    position: relative;
+}
+
+.box select
+{
+    background : #fff;
+    color : grey;
+    padding : 10px;
+    width : 470px;
+    height : 45px;
+ 
+    border-radius : 4px;
+    font-size : 15px;
+    
+    -webkit-appearance : button;
+    outline : none;
+}
+
+.item-info{
+    margin-bottom: 10px;
+    text-align: left;
+    font-family: Arial, Helvetica, sans-serif;
+    padding-left: 65px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+@media (max-width : 992px){
+    main{
+        grid-template-columns : repeat(2, 1fr);
+        grid-gap : 20px;
+    }
+}
+
+@media (max-width : 767px){
+    main{
+        grid-template-columns : repeat(2, 1fr);
+        grid-gap : 15px;
+    }
+    header{
+        width : 95%;
+    }
+    .blogContent{
+        bottom : 0;
+    }
+}
+
+@media (max-width : 500px){
+    main{
+        grid-template-columns : repeat(1, 1fr);      
+    }
+}
+*/
+
+
+
+
+
+
+
+
+
+/* CSS for the Footer(About US) Function */
+.about{
+    background-color:#8B4513;
+    height: 300px;
+}
+.team{
+    color: antiquewhite;
+    background-color:darkgoldenrod;
+}
+.about h2{
+    margin-left: 50px;
+    font-size: 60px;
+    color:bisque;
+}
+.about h5{
+    margin-left: 50px;
+    font-size: 25px;
+    color:cornsilk;
+}
+
+.team_name{
+    font-style: sans-serif, serif;
+}
+
+.member_name{
+    font-style: serif;
+}
+/* CSS for the Footer(About US) Function ends here*/

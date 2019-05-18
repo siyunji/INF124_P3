@@ -1,0 +1,131 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+#container{
+   width: 100%;
+    margin: 0px auto;
+}
+.main{
+    width:auto;
+    margin:auto;
+    background-color: burlywood;
+    min-height: 1000px;
+    margin: 0 auto;
+}
+
+header{
+    height: 80px;
+    width: auto;
+    background-color:burlywood;
+    font-size: 50px;
+    font-family:cursive;
+    color:#8B4513;
+}
+
+.overview{
+    height: 75%;
+    background: #8B4513;
+    font-family: cursive;
+    color:antiquewhite;
+    display:flex;
+}
+
+.overview h1{
+    float:right;
+}
+
+.overview h4{
+    color:burlywood;
+    
+}
+
+.head-text{
+    text-align: center;
+    align-content: center;
+    margin: 60px 50px 40px 50px;
+    font-size: 20px;
+}
+
+.shop-button{
+    margin-top: 100px;
+    font-size: 40px;
+    color:#8B4513;
+    background-color: antiquewhite;
+    font-family:sans-serif;
+    border-radius:10px;
+    padding: 10px;
+    position: relative;
+}
+
+.shop-button:hover{
+    background-color:brown;
+    color: aliceblue;
+}
+
+.info{
+    margin-top:30px;
+    height: 450px;
+    font-size: 50px;
+    
+}
+.info p{
+    color: firebrick;
+    font-family: cursive;
+    
+}
+
+.see-more-button{
+   position:absolute;
+    right:80px;
+    margin-top:100px;
+    padding: 10px 30px;
+    color: firebrick;
+    font-size: 20px;
+    text-decoration: none;
+    border-radius: 10px;
+    color:antiquewhite;
+    background-color:#8B4513;
+    font-family: sans-serif; 
+}
+
+.strawberry{
+    text-align: center;
+}
+
+.strawberry p{
+    font-family:sans-serif;
+}
+.mainitem{
+    text-align: center;
+    margin-top: 20px;
+    position: relative;
+}
+
+.about{
+    background-color:#8B4513;
+    height: 300px;
+}
+.team{
+    color: antiquewhite;
+    background-color:darkgoldenrod;
+}
+.about h2{
+    margin-left: 50px;
+    font-size: 60px;
+    color:bisque;
+}
+.about h5{
+    margin-left: 50px;
+    font-size: 25px;
+    color:cornsilk;
+}
+
+.team_name{
+    font-style: sans-serif, serif;
+}
+
+.member_name{
+    font-style: serif;
+}
