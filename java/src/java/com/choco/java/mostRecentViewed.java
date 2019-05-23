@@ -7,6 +7,9 @@ package com.choco.java;
 
 import com.choco.java.constants;
 
+import com.choco.java.constants;
+import java.util.*;
+        
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -20,6 +23,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,9 +32,9 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author niuni
  */
-@WebServlet(name = "itemList", urlPatterns = {"/itemlist"})
-public class itemList extends HttpServlet {
-
+@WebServlet(name = "mostRecentViewed", urlPatterns = {"/mostrecentviewed"})
+public class mostRecentViewed extends HttpServlet {
+    
     private constants cons = new constants();
     
     @Override
@@ -41,7 +45,7 @@ public class itemList extends HttpServlet {
             e.printStackTrace();
         }
     }
-    
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -56,16 +60,23 @@ public class itemList extends HttpServlet {
             throws ServletException, IOException {
         Connection conn = null;
         Statement stmt = null;
+        PreparedStatement prep = null; 
         response.setContentType("text/html");
+        
+        HttpSession session = request.getSession(true);
+        LinkedList<String> recentViewedItems = (LinkedList<String>) session.getAttribute("recentViewedItems");        
         
         try {            
             PrintWriter out = response.getWriter();
             try {
                 
                 conn = DriverManager.getConnection("jdbc:mysql://"+this.cons.getDB_HOST()+"/"+this.cons.getDB_DATABASE(), this.cons.getDB_USER(), this.cons.getDB_PASSWORD());
-                stmt = conn.createStatement();
-                ResultSet rs = stmt.executeQuery("SELECT * FROM chocolate");
-                while (rs.next()) {
+                String sql = "select * from chocolate where id = ?;";
+                prep = conn.prepareStatement(sql);
+                
+                for (String itemNum : recentViewedItems){
+                    prep.setString(1,itemNum);
+                    ResultSet rs = prep.executeQuery();
                     out.println(
         "<div class = \"item-block\">"+
         "<table>"+
@@ -81,12 +92,9 @@ public class itemList extends HttpServlet {
                 "</tr>"+
             "</tbody> "+
         "</table>"+
-        "</div>"
-                    );
+        "</div>");
                 }
                 
-                RequestDispatcher rd=request.getRequestDispatcher("/mostrecentviewed");
-                rd.include(request, response);
             } catch (Exception e) {
                 response.sendError(500);
             } finally {
@@ -94,6 +102,8 @@ public class itemList extends HttpServlet {
                     stmt.close();
                 if (conn != null)
                     conn.close();
+                if (prep != null)
+                    prep.close();
             }
             
         } catch (SQLException e) {
@@ -117,6 +127,7 @@ public class itemList extends HttpServlet {
         this.doGet(request, response);
         
     }
+    
 
     /**
      * Returns a short description of the servlet.

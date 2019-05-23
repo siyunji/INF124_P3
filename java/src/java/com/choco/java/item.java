@@ -6,7 +6,8 @@
 package com.choco.java;
 
 import com.choco.java.constants;
-
+import java.util.*;
+        
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -20,6 +21,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,11 +30,11 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author niuni
  */
-@WebServlet(name = "itemList", urlPatterns = {"/itemlist"})
-public class itemList extends HttpServlet {
-
-    private constants cons = new constants();
+@WebServlet(name = "item", urlPatterns = {"/item"})
+public class item extends HttpServlet {
     
+    private constants cons = new constants();
+
     @Override
     public void init(ServletConfig config) throws ServletException {
         try {
@@ -42,7 +44,6 @@ public class itemList extends HttpServlet {
         }
     }
     
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -51,42 +52,43 @@ public class itemList extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Connection conn = null;
         Statement stmt = null;
+        PreparedStatement prep = null; 
         response.setContentType("text/html");
+        
+        //Store most recent view items
+        HttpSession session = request.getSession(true);
+        LinkedList<String> recentViewedItems = (LinkedList<String>) session.getAttribute("recentViewedItems");
+        if (recentViewedItems == null){
+            session.setAttribute("recentViewedItems", new LinkedList<String>());
+            recentViewedItems = (LinkedList<String>) session.getAttribute("recentViewedItems");
+        }
+        
+        String itemNum = request.getParameter("num");
+        if (recentViewedItems.size() >=5 && !recentViewedItems.contains(itemNum)){
+            recentViewedItems.poll();
+            recentViewedItems.add(itemNum);
+        } else if(!recentViewedItems.contains(itemNum))
+            recentViewedItems.add(itemNum);
+   
         
         try {            
             PrintWriter out = response.getWriter();
             try {
                 
                 conn = DriverManager.getConnection("jdbc:mysql://"+this.cons.getDB_HOST()+"/"+this.cons.getDB_DATABASE(), this.cons.getDB_USER(), this.cons.getDB_PASSWORD());
-                stmt = conn.createStatement();
-                ResultSet rs = stmt.executeQuery("SELECT * FROM chocolate");
-                while (rs.next()) {
-                    out.println(
-        "<div class = \"item-block\">"+
-        "<table>"+
-            "<tbody >"+
-                "<tr>"+
-                    "<td><img class = \" enlarge-pic \" onclick=\" openItemPage("+rs.getString("id")+ ") \" src=\" "+rs.getString("img")+" \" /></td> "+
-                "</tr>"+
-                "<tr>"+
-                    "<td><h3 class=\" item-title \"> "+rs.getString("name")+"</h3> </td> "+
-                "</tr>"+
-                "<tr>"+
-                    "<td><h1> $"+rs.getString("price")+"</h1> </td>"+
-                "</tr>"+
-            "</tbody> "+
-        "</table>"+
-        "</div>"
-                    );
-                }
+                String sql = "select * from chocolate where id = ?;";
+                prep = conn.prepareStatement(sql);
+                prep.setString(1, itemNum);
+                ResultSet rs = prep.executeQuery();
                 
-                RequestDispatcher rd=request.getRequestDispatcher("/mostrecentviewed");
-                rd.include(request, response);
+                //output the detail of product
+                
             } catch (Exception e) {
                 response.sendError(500);
             } finally {
@@ -94,6 +96,8 @@ public class itemList extends HttpServlet {
                     stmt.close();
                 if (conn != null)
                     conn.close();
+                if (prep != null)
+                    prep.close();
             }
             
         } catch (SQLException e) {
@@ -101,6 +105,8 @@ public class itemList extends HttpServlet {
         }
     
     }
+    
+    
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -114,8 +120,31 @@ public class itemList extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        this.doGet(request, response);
+        response.setContentType("text/html");   
         
+        try {         
+            
+            //add item and quantity into cart
+            HttpSession session = request.getSession(true);
+            HashMap<String, Integer> cart = (HashMap<String, Integer>) session.getAttribute("cart");
+            if (cart == null){
+                session.setAttribute("cart", new HashMap<String, Integer>());
+                cart = (HashMap<String, Integer>) session.getAttribute("cart");
+            }
+            
+            String itemNum = request.getParameter("num");
+            Integer quantity = Integer.valueOf(request.getParameter("quantity"));
+            if (cart.containsKey(itemNum)){
+                cart.replace(itemNum, cart.get(itemNum)+quantity);
+            } else{
+                cart.put(itemNum, quantity);
+            }
+            
+            response.sendRedirect("shop.php");
+            
+        } catch (Exception e) {
+                response.sendError(500);
+        }
     }
 
     /**
