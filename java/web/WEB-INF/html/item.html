@@ -1,0 +1,112 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title> Chocolate Shopping Page - ITEM </title>
+    <link rel="stylesheet" href="../css/Item.css">
+    <script type="module" src="../script/item.js"></script>
+
+</head>
+
+<body>
+    <!-- took the code below from Siyun's in oder to unify the OVERVIEW(top part) of our website -->
+    <header>
+        <center>
+            <p>ChocoBooth </p>
+        </center>
+        <div class="overview">
+            <img class="head-img" src="homepage_chocolate.png">
+            <div class="head-text">
+                <h3>Our shop provides you the best taste of Chocolate snacks from Asia</h3>
+                <h4>Most of food on our website is made by chocolate</h4>
+                <button onclick="location.href = location.href.replace('home','shop')" class="shop-button">Shop
+                    Now!</button>
+            </div>
+        </div>
+    </header>
+    <!-- The OVERVIEW Function ends here  -->
+
+    <section>
+        <main>
+            <!-- TOP LEFT Section to represent the selected item from the HOME PAGE  -->
+            <div class="container1">
+                <div class="itemImage">
+                    <img id="main-picture" src="" alt="main picture">
+                    <div class="itemName">
+                    </div>
+                </div>
+            </div>
+            <!-- TOP LEFTSection to represent the selected item from the HOME PAGE ends here  -->
+
+
+            <!-- TOP RIGHT Section to represent the auxiliary image1 and image2 && detailed Description  -->
+            <div class="container2">
+
+                <div class="extraImage1">
+                    <img id="add-picture-1" src="" alt="add-on picture one">
+                </div>
+
+                <div class="extraImage2">
+                    <img id="add-picture-2" src="" alt="add-on picture two">
+                </div>
+
+                <div class="Descriptions">
+                    <h5 class="item-info" id="name"> </h5>
+                    <h2 class="item-info" id="price">
+                        Price: $
+                    </h2>
+                    <h5 class="item-info" id="tax"></h5>
+                    <h5 class="item-info" id="total"></h5>
+                    <h6 class="item-info" id="origin"><b>Origin: </b></h6>
+                    <h6 class="item-info" id="direction"><b>Direction: </b></h6>
+                    
+                </div>
+            </div>
+            
+
+            <!-- TOP RIGHT Section to represent the auxiliary image1 and image2 && detailed Description ends here -->
+
+            <div class="container3">
+                <div class="template">
+                </div>
+            </div>
+
+            <div class="container4">
+                <form class="form" name="myForm" id="user-form" method="post">
+
+                    <h5 class = "template-item"> Quantity : </h5><br>
+                    <input type="text" name="quantity" id="quantity"  placeholder="*ex) 500" /><br>
+                    <input type="hidden" name="num" id="item_num"/>
+                    <input type="hidden" name="price" id="total_price"/>
+                    <button>
+                        <imput type="submit" class="P-button" value="submit" >ADD TO CART</imput>
+                    </button>
+                </form>
+            </div>
+
+        </main>
+
+    </section>
+
+</body>
+
+<!-- took the code below from Siyun's in oder to unify the ABOUT US of our website -->
+<footer>
+    <div class="about">
+        <h5><br>Our company aims to provide various kinds of snack from Aisa made by chocolate. <br> We want to bring
+            enjoyable and delightful experience with different tastes with chocolate
+            <br>You can find lots of delicious food here!</h5>
+    </div>
+    <div class="team">
+        <center>
+            <p> Team Dama</p>
+        </center>
+        <center>
+            <p> Team Member : Siyun JI & Zhaomin LI & Sunjun Ahn</p>
+        </center>
+    </div>
+</footer>
+<!-- The ABOUT US Function ends here  -->
+
+
+</html>

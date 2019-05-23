@@ -1,7 +1,3 @@
-<?php
-	require_once "dbconnect.php";
-	$pdo = connectToDB();
-?>
 
 <html>
 
@@ -31,27 +27,7 @@
 		</div>
 
 		<div id="item-list">
-		<?php
-    		$stmt = $pdo->query("SELECT * FROM chocolate");
-    		while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ) {
-        		echo(
-		"<div class = \"item-block\">".
-        "<table>".
-            "<tbody >".
-                "<tr>".
-                    "<td><img class = \" enlarge-pic \" onclick=\" openItemPage(".$row['id']. ") \" src=\" ".$row['img']." \" /></td> ".
-                "</tr>".
-                "<tr>".
-                    "<td><h3 class=\" item-title \"> ".$row['name']."</h3> </td> ".
-                "</tr>".
-                "<tr>".
-                    "<td><h1> $".$row['price']."</h1> </td>".
-                "</tr>".
-            "</tbody> ".
-        "</table>".
-        "</div>");
-    	}
-    ?> <br>
+		
 		</div>
 
 		
@@ -64,7 +40,3 @@
 </body>
 
 </html>
-
-<?php
-$pdo->close();
-?>

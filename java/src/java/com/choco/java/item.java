@@ -7,7 +7,7 @@ package com.choco.java;
 
 import com.choco.java.constants;
 import java.util.*;
-        
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -17,6 +17,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -59,7 +60,7 @@ public class item extends HttpServlet {
         Connection conn = null;
         Statement stmt = null;
         PreparedStatement prep = null; 
-        response.setContentType("text/html");
+        response.setContentType("application/json");
         
         //Store most recent view items
         HttpSession session = request.getSession(true);
@@ -88,6 +89,19 @@ public class item extends HttpServlet {
                 ResultSet rs = prep.executeQuery();
                 
                 //output the detail of product
+                String jsonStr = "{"
+                        + "\"id\"" + ":" + "\"" + rs.getInt("id") + "\""
+                        + "\"name\"" + ":" + "\"" + rs.getString("name") + "\""
+                        + "\"img\"" + ":" + "\"" + rs.getString("img") + "\""
+                        + "\"price\"" + ":" + "\"" + rs.getFloat("price") + "\""
+                        + "\"img\"" + ":" + "\"" + rs.getString("img") + "\""
+                        + "\"origin\"" + ":" + "\"" + rs.getString("origin") + "\""
+                        + "\"direction\"" + ":" + "\"" + rs.getString("direction") + "\""
+                        + "\"pic_1\"" + ":" + "\"" + rs.getString("pic_1") + "\""
+                        + "\"pic_2\"" + ":" + "\"" + rs.getString("pic_2") + "\""
+                        + "}";
+                out.print(jsonStr);
+                out.flush();
                 
             } catch (Exception e) {
                 response.sendError(500);

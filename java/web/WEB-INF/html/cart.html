@@ -1,10 +1,3 @@
-<!-- import * as data from *../script/data"; -->
-<!--  const CHOCH_DATA = data.CHOCOLATE_DATA; -->
-<?php
-	require_once "dbconnect.php";
-    $pdo = connectToDB();                    
-?>
-
 <html lang="en">
 
 <head>
@@ -16,11 +9,6 @@
 </head>
 
 <body>
-    <?php
-        $id = $_GET["num"];
-        $stmt = $pdo->query('SELECT * FROM chocolate WHERE id=\''.$id.'\'');
-        $result = $stmt->fetch();
-    ?>
     <!-- took the code below from Siyun's in oder to unify the OVERVIEW(top part) of our website -->
     <header>
         <center>
@@ -39,63 +27,7 @@
     <!-- The OVERVIEW Function ends here  -->
 
     <section>
-        <main>
-            <!-- TOP LEFT Section to represent the selected item from the HOME PAGE  -->
-            <div class="container1">
-                <div class="itemImage">
-                    <img id="main-picture" src=<?php
-                    echo("\"".$result['img']."\"");
-                    ?> alt="main picture">
-                    <div class="itemName">
-                    </div>
-                </div>
-            </div>
-            <!-- TOP LEFTSection to represent the selected item from the HOME PAGE ends here  -->
-
-
-            <!-- TOP RIGHT Section to represent the auxiliary image1 and image2 && detailed Description  -->
-            <div class="container2">
-
-                <div class="extraImage1">
-                    <img id="add-picture-1" src=<?php
-                    echo("\"".$result['pic_1']."\"");
-                    ?> alt="add-on picture one">
-                </div>
-
-                <div class="extraImage2">
-                    <img id="add-picture-2" src=
-                    <?php
-                    echo("\"".$result['pic_2']."\"");
-                    ?> 
-                    alt="add-on picture two">
-                </div>
-
-                <div class="Descriptions">
-                    <h5 class="item-info" id="name">
-                        <?php
-                            echo($result['name']);
-                        ?>
-                    </h5>
-                    <h2 class="item-info" id="price">
-                        Price: $<?php
-                        echo($result['price']);
-                        ?>
-                    </h2>
-                    <h5 class="item-info" id="tax"></h5>
-                    <h5 class="item-info" id="total"></h5>
-                    <h6 class="item-info" id="origin"><b>Origin: 
-                        <?php
-                    echo($result['origin']);
-                    ?></b></h6>
-                    <h6 class="item-info" id="direction"><b>Direction: 
-                    <?php
-                    echo($result['direction']);
-                    ?>
-                    </b></h6>
-                    
-                </div>
-            </div>
-            
+        <main>            
 
             <!-- TOP RIGHT Section to represent the auxiliary image1 and image2 && detailed Description ends here -->
 
@@ -174,6 +106,3 @@
 
 
 </html>
-<?php
-    $pdo->close();
-?>
