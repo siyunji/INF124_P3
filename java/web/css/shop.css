@@ -10,6 +10,18 @@
     font-size: 20px;
   
 }
+.cart-button{
+    margin-top: 100px;
+    font-size: 40px;
+    color:#8B4513;
+    background-color: antiquewhite;
+    font-family:sans-serif;
+    border-radius:10px;
+    padding: 10px;
+    position: relative;
+    
+}
+
 
 #item-list{
     display: grid;
@@ -45,6 +57,9 @@
         margin-right: 3%; 
     }
 }
+
+
+
 
 .item-title{
     padding: 5px 0px 10px 0px;

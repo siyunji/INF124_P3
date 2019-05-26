@@ -76,6 +76,18 @@ header p{
     background-color:brown;
     color: aliceblue;
 }
+
+.cart-button{
+    margin-top: 100px;
+    font-size: 40px;
+    color:#8B4513;
+    background-color: antiquewhite;
+    font-family:sans-serif;
+    border-radius:10px;
+    padding: 10px;
+    position: relative;
+    
+}
 /****************************************************************/
 /*  headr in the BODY : CSS for the OVERVIEW Function ends here */
 /****************************************************************/
