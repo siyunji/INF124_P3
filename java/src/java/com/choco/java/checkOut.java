@@ -62,14 +62,14 @@ public class checkOut extends HttpServlet {
                 conn = DriverManager.getConnection("jdbc:mysql://"+this.cons.getDB_HOST()+"/"+this.cons.getDB_DATABASE(), this.cons.getDB_USER(), this.cons.getDB_PASSWORD());
                 String sql = "select * from chocolate where id = ?";
                 prep = conn.prepareStatement(sql);
-                if (cart != null)
+                if (cart == null)
                     out.println("<h1>Cart is EMPTY, GO BUYING SOMTH</h1>");
                 else{
                     for (String itemNum : cart.keySet()){
                     prep.setString(1,itemNum);
                     ResultSet rs = prep.executeQuery();
                     rs.next();
-                    total += rs.getFloat("price")*cart.get("itemNum");
+                    total += rs.getFloat("price")*cart.get(itemNum);
                     out.println(
                         "<div class = \"item-block-small\">"+
                             "<table>"+
@@ -84,7 +84,7 @@ public class checkOut extends HttpServlet {
                                     "<td><h1> $"+rs.getString("price")+"</h1> </td>"+
                                 "</tr>"+
                                 "<tr>"+
-                                    "<td><h1> Quantity: "+cart.get("itemNum")+"</h1> </td>"+
+                                    "<td><h1> Quantity: "+cart.get(itemNum)+"</h1> </td>"+
                                 "</tr>"+
                             "</tbody> "+
                         "   </table>"+
