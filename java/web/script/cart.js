@@ -3,7 +3,7 @@ var urlParams = new URLSearchParams(window.location.search);
 
 var num = urlParams.get("num");
 
-var quantity, firstName, lastName, phoneNumber, streetNumber,streetName, unitNumber, zip, city, state, creditCard, email, Shipping;
+var firstName, lastName, phoneNumber, streetNumber,streetName, unitNumber, zip, city, state, creditCard, email, Shipping;
 
 /* function to check if the user-input for email address is in the email template */
 function emailValidation(){
@@ -15,7 +15,7 @@ function emailValidation(){
 }
 
 function validation() {
-    quantity = document.getElementById("quantity");
+    
     firstName = document.getElementById("firstName");
     lastName = document.getElementById("lastName");
     
@@ -43,10 +43,7 @@ function validation() {
 
 
     /* basic validation if user inputs blank space(s) */
-    if( quantity.value.trim() == "") {
-            alert("Please provide a number of quantity");
-            return false;
-    }
+ 
     if( firstName.value.trim() == "") {
             alert("Please provide your first name");
             return false;
@@ -94,14 +91,7 @@ function validation() {
     /* Basic validation ends */
 
     /* checks if user inputs Number and the Iteger is != < 1 */
-    if(isNaN(quantity.value)){
-            alert("Please provide a valid number of quantity")
-            return false;
-    }
-    if(quantity.value < 1){
-            alert("Please provide a valid number of quantity")
-            return false;
-    }
+
 
     /* checks if user inputs Number and the Iteger is 10 digits */
     if(isNaN(phoneNumber.value)){
@@ -232,8 +222,22 @@ function getTax(zip) {
         xhr.open("GET", "/script/php/tax.php?zip=" + zip, true);
         xhr.send();
 }
-     
+
+function getCartItems() {
+        var xhr = new XMLHttpRequest(); 
+        xhr.onreadystatechange = function () { 
+                // 4 means finished, and 200 means okay.
+                if (xhr.readyState == 4 && xhr.status == 200) 
+                {
+                        var result = xhr.responseText;
+                        document.getElementById("cart-list").innerHTML = result;
+                }
+         }
+        xhr.open("GET", "/java/checkout", true);
+        xhr.send();
+}
 window.onload = function (){
+        getCartItems();
         document.getElementById("user-form").action = "../html/confirm.php?num="+num;
 }
 
@@ -247,3 +251,4 @@ document.getElementById('zipCode').addEventListener("input", function(e){
                 getTax(document.getElementById('zipCode').value);
         }
 });
+
