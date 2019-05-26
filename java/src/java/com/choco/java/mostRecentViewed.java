@@ -97,7 +97,7 @@ public class mostRecentViewed extends HttpServlet {
                 }
                 
             } catch (Exception e) {
-                response.sendError(404);
+                response.sendError(500);
             } finally {
                 if (stmt != null)
                     stmt.close();
@@ -108,7 +108,7 @@ public class mostRecentViewed extends HttpServlet {
             }
             
         } catch (SQLException e) {
-            response.sendError(501);
+            response.sendError(500);
         }
     
     }

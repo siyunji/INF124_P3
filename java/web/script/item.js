@@ -11,7 +11,9 @@ function getItemInfo(num) {
                 // 4 means finished, and 200 means okay.
                 if (xhr.readyState == 4 && xhr.status == 200) 
                 {
+                        console.log(xhr.responseText);
                         var jsResult = JSON.parse(xhr.responseText);
+                        
                         document.getElementById("main-picture").src = jsResult.img;
                         document.getElementById("add-picture-1").src = jsResult.pic_1;
                         document.getElementById("add-picture-2").src = jsResult.pic_2;

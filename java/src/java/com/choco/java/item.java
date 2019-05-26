@@ -83,21 +83,21 @@ public class item extends HttpServlet {
             try {
                 
                 conn = DriverManager.getConnection("jdbc:mysql://"+this.cons.getDB_HOST()+"/"+this.cons.getDB_DATABASE(), this.cons.getDB_USER(), this.cons.getDB_PASSWORD());
-                String sql = "select * from chocolate where id = ?;";
+                String sql = "select * from chocolate where id = ?";
                 prep = conn.prepareStatement(sql);
                 prep.setString(1, itemNum);
                 ResultSet rs = prep.executeQuery();
+                rs.next();
                 
                 //output the detail of product
                 String jsonStr = "{"
-                        + "\"id\"" + ":" + "\"" + rs.getInt("id") + "\""
-                        + "\"name\"" + ":" + "\"" + rs.getString("name") + "\""
-                        + "\"img\"" + ":" + "\"" + rs.getString("img") + "\""
-                        + "\"price\"" + ":" + "\"" + rs.getFloat("price") + "\""
-                        + "\"img\"" + ":" + "\"" + rs.getString("img") + "\""
-                        + "\"origin\"" + ":" + "\"" + rs.getString("origin") + "\""
-                        + "\"direction\"" + ":" + "\"" + rs.getString("direction") + "\""
-                        + "\"pic_1\"" + ":" + "\"" + rs.getString("pic_1") + "\""
+                        + "\"id\"" + ":" + "\"" + rs.getInt("id") + "\","
+                        + "\"name\"" + ":" + "\"" + rs.getString("name") + "\","
+                        + "\"img\"" + ":" + "\"" + rs.getString("img") + "\","
+                        + "\"price\"" + ":" + "\"" + rs.getFloat("price") + "\","
+                        + "\"origin\"" + ":" + "\"" + rs.getString("origin") + "\","
+                        + "\"direction\"" + ":" + "\"" + rs.getString("direction") + "\","
+                        + "\"pic_1\"" + ":" + "\"" + rs.getString("pic_1") + "\","
                         + "\"pic_2\"" + ":" + "\"" + rs.getString("pic_2") + "\""
                         + "}";
                 out.print(jsonStr);
