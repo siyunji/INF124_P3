@@ -61,6 +61,8 @@ public class itemList extends HttpServlet {
         try {            
             PrintWriter out = response.getWriter();
             try {
+                RequestDispatcher rd=request.getRequestDispatcher("/mostrecentviewed");
+                rd.include(request, response);
                 
                 conn = DriverManager.getConnection("jdbc:mysql://"+this.cons.getDB_HOST()+"/"+this.cons.getDB_DATABASE(), this.cons.getDB_USER(), this.cons.getDB_PASSWORD());
                 stmt = conn.createStatement();
@@ -85,8 +87,7 @@ public class itemList extends HttpServlet {
                     );
                 }
                 
-                RequestDispatcher rd=request.getRequestDispatcher("/mostrecentviewed");
-                rd.include(request, response);
+                
             } catch (Exception e) {
                 response.sendError(500);
             } finally {
