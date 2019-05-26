@@ -84,7 +84,7 @@ public class checkOut extends HttpServlet {
                                     "<td><h1> $"+rs.getString("price")+"</h1> </td>"+
                                 "</tr>"+
                                 "<tr>"+
-                                    "<td><h1> Quantity: "+cart.get(itemNum)+"</h1> </td>"+
+                                    "<td><h1> Quantity: "+String.format("%.2f", cart.get(itemNum))+"</h1> </td>"+
                                 "</tr>"+
                             "</tbody> "+
                         "   </table>"+
@@ -123,6 +123,70 @@ public class checkOut extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // posting the order form
+        
+                Connection conn = null;
+        Statement stmt = null;
+        PreparedStatement prep = null; 
+        response.setContentType("text/html");
+        
+        HttpSession session = request.getSession(true);
+        HashMap<String, Integer> cart = (HashMap<String, Integer>) session.getAttribute("cart");        
+        
+        try {            
+            PrintWriter out = response.getWriter();
+            try {
+                float total = 0;
+                conn = DriverManager.getConnection("jdbc:mysql://"+this.cons.getDB_HOST()+"/"+this.cons.getDB_DATABASE(), this.cons.getDB_USER(), this.cons.getDB_PASSWORD());
+                String sql = "select * from chocolate where id = ?";
+                prep = conn.prepareStatement(sql);
+                if (cart == null)
+                    out.println("<h1>Cart is EMPTY, GO BUYING SOMTH</h1>");
+                else{
+                    for (String itemNum : cart.keySet()){
+                    prep.setString(1,itemNum);
+                    ResultSet rs = prep.executeQuery();
+                    rs.next();
+                    total += rs.getFloat("price")*cart.get(itemNum);
+                    out.println(
+                        "<div class = \"item-block-small\">"+
+                            "<table>"+
+                            "<tbody >"+
+                                "<tr>"+
+                                    "<td><img class = \" enlarge-pic \" onclick=\" openItemPage("+rs.getString("id")+ ") \" src=\" "+rs.getString("img")+" \" /></td> "+
+                                "</tr>"+
+                                "<tr>"+
+                                    "<td><h3 class=\" item-title \"> "+rs.getString("name")+"</h3> </td> "+
+                                "</tr>"+
+                                "<tr>"+
+                                    "<td><h1> $"+rs.getString("price")+"</h1> </td>"+
+                                "</tr>"+
+                                "<tr>"+
+                                    "<td><h1> Quantity: "+String.format("%.2f", cart.get(itemNum))+"</h1> </td>"+
+                                "</tr>"+
+                            "</tbody> "+
+                        "   </table>"+
+                        "</div>");
+                    }
+                    out.println("<h1>Total Price: "+total+"</h1>");
+                }
+            
+
+                
+            } catch (Exception e) {
+                response.sendError(500);
+            } finally {
+                if (stmt != null)
+                    stmt.close();
+                if (conn != null)
+                    conn.close();
+                if (prep != null)
+                    prep.close();
+            }
+            
+           } catch (SQLException e) {
+            response.sendError(500);
+        }
+        
     }
 
     /**
