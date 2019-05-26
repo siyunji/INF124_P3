@@ -24,10 +24,10 @@ function getItemInfo(num) {
                         document.getElementById("total_price").value = jsResult.price;
                 }
          }
-        xhr.open("GET", "/item?num=" + num, true);
+        xhr.open("GET", "/java/item?num=" + num, true);
         xhr.send();
 }
      
 window.onload = function (){
-        this.getItemInfo(num);
+        getItemInfo(num);
 }
