@@ -73,13 +73,15 @@ public class mostRecentViewed extends HttpServlet {
                 conn = DriverManager.getConnection("jdbc:mysql://"+this.cons.getDB_HOST()+"/"+this.cons.getDB_DATABASE(), this.cons.getDB_USER(), this.cons.getDB_PASSWORD());
                 String sql = "select * from chocolate where id = ?";
                 prep = conn.prepareStatement(sql);
+                if (recentViewedItems != null)
+                    out.println("<div class=\"most-recent-viewed\"><h3>Most recent viewed items</h3></div>");
                 
                 for (String itemNum : recentViewedItems){
                     prep.setString(1,itemNum);
                     ResultSet rs = prep.executeQuery();
                     rs.next();
                     out.println(
-        "<div class = \"item-block\">"+
+        "<div class = \"item-block-small\">"+
         "<table>"+
             "<tbody >"+
                 "<tr>"+
@@ -95,6 +97,8 @@ public class mostRecentViewed extends HttpServlet {
         "</table>"+
         "</div>");
                 }
+                
+                out.println("<div class=\"most-recent-viewed\"><h3>All the items</h3></div>");
                 
             } catch (Exception e) {
                 response.sendError(500);
