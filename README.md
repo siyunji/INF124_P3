@@ -4,7 +4,7 @@ This is the repository for INF124 project three, a shopping web for chocolate, u
 In our group, there are three group members : Zhaomin Li, Sunjun Ahn, and Siyun Ji.
 
 Running on ` `   
-1. We created the `mostRecentViewed.java` to store what user viewed in a LinkedList and then print out by calling its item identification number. When the user views the item, it checks if there is duplicated item stored in the LinkedList. If there is, then it removes the existing one and then queue it to the end of its LinkedList. After it is stored in the LinkedList, the most recently viewed items will print out item's attributes(values) such as image, name, and price by its key(which is item identification number) upto 5 items. 
+1. We created the `mostRecentViewed.java` to store what user viewed in a LinkedList and then print out by calling its item identification number. When the user views the item, it checks if there is duplicated item stored in the LinkedList. If there is, then it removes the existing one and then queue it to the end of its LinkedList. After it is queued in the LinkedList, the most recently viewed items will print out item's attributes(values) such as image, name, and price by its key(which is item identification number) upto 5 items. 
 
 
 2. We created the `checkOut.java` to create the product detailed page. This page has two user form section : quantity and add to cart. As user clicks the add to cart button `checkOut.java` stores item image, name, price, quantity in a session and then print out those item attributes with its total price in the cart page.
