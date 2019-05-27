@@ -9,12 +9,10 @@ Running on ` `
 
 2. We created the `item.java` to create the product detailed page. As user select the product in advance, this page takes items identification number as a key and print out its attributes such as item's main image with its two other sub-images, name, price, and then detailed information. And This page has another session to stored item's indentification number as a key with user provided quantity as its value in a LinkedList in order to store in the cart.
 
-3. For this requirement, we created `storeItems.java` to store the items which each user add into the shopping cart. Inside the session we created, we used a hashmap to store the information and the key of the hashmap is the product number and value is the quatities of this item. In `checkOut.java` we connect and access the database and show all of the production information on the page. After getting the quanity and price,we calculated the total price and then store in the database which connect with the user information. Then in `storeItems.java`, we insert the user purchase information into the database though "post" method. Then we use "forward" to forward request and response to the confirmation page.   
+3. For this requirement, we created `storeItems.java` to store the items which each user add into the shopping cart. Inside the session we created, we used a hashmap to store the information and the key of the hashmap is the product number and value is the quatities of this item. In `checkOut.java` we connect and access the database and show all of the production information on the page. After getting the quanity and price,we calculated the total price and then store in the database which connect with the user information. Then in `storeItems.java`, we insert the user purchase information into the database though "post" method. Then we use "forward" to forward request and response to the confirmation page. In`confirm.java`, we got the information sent by "forward" and use html code in to reveal the comfirmation page.    
 
 
  --Explanation for other file: 
-`item.html`: we added the method "post" and set the action of form to redirect to the `confirm.php`.
-`confirm.html`: we require `dbconnect.php` to get the connetion and inserted the information we got from users into the database.
 `Info.css`: css file connected to `confirm.html`
 `home.html`: show the home page with information we get from database.
 `home.css`: css file connected to `home.html`
