@@ -15,12 +15,11 @@ Running on ` `
  --Explanation for other file: 
 `item.html`: we added the method "post" and set the action of form to redirect to the `confirm.php`.
 `confirm.html`: we require `dbconnect.php` to get the connetion and inserted the information we got from users into the database.
-`Info.css`: css file connected to `confirm.php`
+`Info.css`: css file connected to `confirm.html`
 `home.html`: show the home page with information we get from database.
-`home.css`: css file connected to `home.php`
+`home.css`: css file connected to `home.html`
 `shop.html`: show the shopping page with information we get from database.
-`shop.css`: css file connected to `shop.php`
-`item.js`: send request to `zip.php` and `tax.php`
+`shop.css`: css file connected to `shop.html`
 
 
 
