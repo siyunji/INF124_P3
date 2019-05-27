@@ -19,21 +19,18 @@ On successful submission, forward to the order details page. You are required to
 2.
 
 
-3. For this requirement, we created `storeItems.java` to store the items which each user add into the shopping cart. For specific, we used a hashmap to store the information and the key of the hashmap is the product number and value is the quatities of this item. We also use `storeItems.java` to access the database and show all of the production information on the page. After getting the quanity and price,we calculated the total price and then store in the database which connect with the user information. Then in `storeItems.java`, we insert the user purchase information into the database though "post" method. Then we use "forward" to forward request and response to the confirmation page.   
+3. For this requirement, we created `storeItems.java` to store the items which each user add into the shopping cart. Inside the Session, we used a hashmap to store the information and the key of the hashmap is the product number and value is the quatities of this item. In `checkOut.java` we connect and access the database and show all of the production information on the page. After getting the quanity and price,we calculated the total price and then store in the database which connect with the user information. Then in `storeItems.java`, we insert the user purchase information into the database though "post" method. Then we use "forward" to forward request and response to the confirmation page.   
 
 
  --Explanation for other file: 
-`item.php`: we added the method "post" and set the action of form to redirect to the `confirm.php`.
-`confirm.php`: we require `dbconnect.php` to get the connetion and inserted the information we got from users into the database.
+`item.html`: we added the method "post" and set the action of form to redirect to the `confirm.php`.
+`confirm.html`: we require `dbconnect.php` to get the connetion and inserted the information we got from users into the database.
 `Info.css`: css file connected to `confirm.php`
-`dbconnect.php`: to get the connetion and inserted the information we got from users into the database. 
-`dbconfig.php`: It stores the names of database, host, username and password. 
-`home.php`: show the home page with information we get from database.
+`home.html`: show the home page with information we get from database.
 `home.css`: css file connected to `home.php`
-`shop.php`: show the shopping page with information we get from database.
+`shop.html`: show the shopping page with information we get from database.
 `shop.css`: css file connected to `shop.php`
 `item.js`: send request to `zip.php` and `tax.php`
-`tax.php`: has all the tax ratio mapping to the zip code.
-`zip.php`: it gets all the zip, city and state information from csv file.
+
 
 
