@@ -19,7 +19,7 @@ On successful submission, forward to the order details page. You are required to
 2.
 
 
-3. For this requirement, we created `storeItems.java` to store the items which each user add into the shopping cart. For specific, we used a hashmap to store the information and the key of the hashmap is the product number and value is the quatities of this item. We also use `storeItems.java` to access the database and show all of the production information on the page. After getting the quanity and price,we calculated the total price and then store in the database which connect with the user information. Then we created `chechOut.java`   
+3. For this requirement, we created `storeItems.java` to store the items which each user add into the shopping cart. For specific, we used a hashmap to store the information and the key of the hashmap is the product number and value is the quatities of this item. We also use `storeItems.java` to access the database and show all of the production information on the page. After getting the quanity and price,we calculated the total price and then store in the database which connect with the user information. Then in `storeItems.java`, we insert the user purchase information into the database though "post" method. Then we use "forward" to forward request and response to the confirmation page.   
 
 
  --Explanation for other file: 
